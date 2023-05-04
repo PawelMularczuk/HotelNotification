@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Edit notification{% endblock %}
+{% block content %}
+<form id="notification_form" method="POST" action="{{ url_for('edit_notifiaction',transaction_id=transaction.id) }}">
+  <label  for="room_number">Room number</label>
+  <input type="text" name="room_number" id="room_number" value="{{transaction.room_number}}" /><br />
+  <label for="guest_name">Guest name</label>
+  <input type="text" name="guest_name" id="guest_name" value="{{transaction.quest_name}}"/><br />
+  <label for="notification_text">Notification</label>
+  <textarea rows="4" cols="50" name="notification_text">{{ transaction.notification_text }}</textarea><br />
+  <input type="submit" value="Send"/><br>
+  <label for="priority" >Priority</label>
+  <select id="priority" name="priority">
+    <!-- <option value="High">HIGH PRIORITY</option>
+      <option value="Medium">MEDIUM PRIORITY</option>
+      <option value="Normal" selected>NOT URGENT</option>-->
+    {% for notification in list_of_priorites %}
+    <option value="{{notification.code}}" {{ 'selected' if notification.code==transaction.priority }}>{{notification.description}}</option>
+    {% endfor %}
+  </select><br>
+</form>
+{% endblock %}
+

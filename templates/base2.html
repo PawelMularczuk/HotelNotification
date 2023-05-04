@@ -1,0 +1,21 @@
+{% from "macros.html" import show_flash_message %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Hotel 101{% endblock %}</title>
+</head>
+    {% include "menu.html" %}
+<body>
+    {% block content %}{% endblock %}
+
+    {{show_flash_message()}}
+
+    {% block page_body %}
+    {% endblock %}
+
+    <br>{% include "footer.html" %}
+</body>
+
+</html>

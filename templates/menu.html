@@ -1,0 +1,48 @@
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if active_menu=='home' }}" aria-current="page"
+            href="{{ url_for('index') }}">Home</a>
+    </li>
+    {% if login.is_valid %}
+    <li class="nav-item">
+        <a class="nav-link {{'active' if active_menu=='history_notifications'}}"
+            href="{{ url_for('history_notifications') }}"> Notifications history</a>
+    </li>
+    {% endif %}
+
+    {% if login.is_valid %}
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if active_menu=='notification' }}" href="{{ url_for('notification') }}">Add
+            notification</a>
+    </li>
+    {% endif %}
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if active_menu=='about' }}" href="{{ url_for('about') }}" tabindex="-1">About
+            hotel</a>
+    </li>
+
+    {% if login.is_valid and login.is_admin %}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Users
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('users')}}">Users</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('new_user') }}">New user</a></li>
+        </ul>
+    </li>
+    {% endif %}
+
+    {% if not login.is_valid %}
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if active_menu=='Login' }}" href="{{ url_for('login') }}" tabindex="-1">Login</a>
+    </li>
+    {% endif %}
+    {% if login.is_valid %}
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if active_menu=='Logout' }}" href="{{ url_for('logout') }}" tabindex="-1">Logout
+            {{ session['user'] if 'user' in session }}</a>
+    </li>
+    {% endif %}
+
+</ul>

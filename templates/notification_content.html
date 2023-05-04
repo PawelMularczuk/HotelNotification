@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Notification content</h1>
+<ul>
+  <li style="font-weight: bold">Room number</li>
+  <li>{{ room_number }}</li>
+  <li style="font-weight: bold">Guest name</li>
+  <li>{{ guest_name }}</li>
+  <li style="font-weight: bold">Notification</li>
+  <li>{{ notification_text }}</li>
+</ul>
+{% if priority_type.code=='High' %}
+<h1>Critical notification content</h1>
+
+{% elif priority_type.code=='Medium' %}
+<h1>Important notification content</h1e>
+
+  {% else %}
+  <h1>Notification content</h1>
+  {% endif %}
+
+  {% endblock %}
