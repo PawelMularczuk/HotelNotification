@@ -3,7 +3,7 @@
 {% block title %}Notifications history{% endblock %}
 
 {% block content %}
-<!-- Modal -->
+<!-- Modal do potwierdzenia podczas usuwania -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -24,6 +24,7 @@
   </div>
 </div>
 
+<!--Funkcja jquery, która spowoduje, że przyciski, które zostały umieszczone przy Delete zostaną skojarzone z okienkiem modalnym.-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   $(document).ready(function () {
@@ -42,6 +43,7 @@
 
 <div class="container">
   <table class="table">
+    <!--Nagłówek tabeli-->
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -52,6 +54,8 @@
         <th scope="col">Operations</th>
       </tr>
     </thead>
+
+    <!--Treść tabeli-->
     <tbody>
       {% for transaction in transactions %}
       <tr>
@@ -60,6 +64,7 @@
         <td>{{ transaction.quest_name }}</td>
         <td>{{ transaction.notification_text }}</td>
         <td>{{ transaction.priority }}</td>
+        <!--Zdefiniowanie miejsca na przyciski -->
         <td>
           <a href="{{ url_for('edit_notifiaction', transaction_id=transaction.id) }}" class="btn btn-success btn-sm"
             role="button">Edit...</a>

@@ -3,14 +3,14 @@
         <a class="nav-link {{ 'active' if active_menu=='home' }}" aria-current="page"
             href="{{ url_for('index') }}">Home</a>
     </li>
-    {% if login.is_valid %}
+    {% if login.is_valid %} <!--Pokaż tę część pliku, jeśli jesteś zalogowany.-->
     <li class="nav-item">
         <a class="nav-link {{'active' if active_menu=='history_notifications'}}"
             href="{{ url_for('history_notifications') }}"> Notifications history</a>
     </li>
     {% endif %}
 
-    {% if login.is_valid %}
+    {% if login.is_valid %} <!--Pokaż tę część pliku, jeśli jesteś zalogowany.-->
     <li class="nav-item">
         <a class="nav-link {{ 'active' if active_menu=='notification' }}" href="{{ url_for('notification') }}">Add
             notification</a>
@@ -22,6 +22,7 @@
     </li>
 
     {% if login.is_valid and login.is_admin %}
+    <!--Pokaż tę część pliku, jeśli jesteś zalogowany i jestes administratorem.-->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Users
@@ -33,13 +34,13 @@
     </li>
     {% endif %}
 
-    {% if not login.is_valid %}
-    <li class="nav-item">
+    {% if not login.is_valid %} <!--Pokaż tę część pliku, jeśli nie jesteś zalogowany.-->
+    <li class="nav-item"> <!--Link do logowania-->
         <a class="nav-link {{ 'active' if active_menu=='Login' }}" href="{{ url_for('login') }}" tabindex="-1">Login</a>
     </li>
     {% endif %}
-    {% if login.is_valid %}
-    <li class="nav-item">
+    {% if login.is_valid %} <!--Pokaż tę część pliku, jeśli jesteś zalogowany.-->
+    <li class="nav-item"> <!--Link do wylogowania-->
         <a class="nav-link {{ 'active' if active_menu=='Logout' }}" href="{{ url_for('logout') }}" tabindex="-1">Logout
             {{ session['user'] if 'user' in session }}</a>
     </li>

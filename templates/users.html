@@ -7,6 +7,7 @@ Users
 
 {% block content %}
 
+<!--Okienko modalnę służące do usuwania uzytkowników po potwierdzeniu-->
 <!-- Modal -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -44,7 +45,7 @@ Users
     });
 </script>
 
-
+<!--Wszystko co będzie wyświetlane w formularzu-->
 <div class="container">
     <table class="table">
         <thead>
@@ -64,21 +65,21 @@ Users
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
                 <td><a href="{{ url_for('user_status_change', action='active', user_name=user.name) }}">
-                    {% if user.is_active %}
-                     &check;
-                    {% else %}
-                    &#x25a2;
-                    {% endif %}
-                </a></td>
+                        {% if user.is_active %} <!--Jeśli użytkownik jest aktywny wyświetlamy chceck.-->
+                        &check;
+                        {% else %} <!--Jeśli użytkownik jest nieaktywny wyświetlamy pusty kwadrat.-->
+                        &#x25a2;
+                        {% endif %}
+                    </a></td>
                 <td><a href="{{ url_for('user_status_change', action='admin', user_name=user.name) }}">
-                    {% if user.is_admin %}
-                    &check;
-                    {% else %}
-                    &#x25a2;
-                    {% endif %}
-                </a></td>
+                        {% if user.is_admin %} <!--Jeśli użytkownik jest adminem wyświetlamy chceck.-->
+                        &check;
+                        {% else %} <!--Jeśli użytkownik nie jest adminem wyświetlamy pusty kwadrat.-->
+                        &#x25a2;
+                        {% endif %}
+                    </a></td>
 
-
+                    <!--Akcje które można wykonać na elementach z formularza.-->
                 <td>
                     <a href="{{ url_for('edit_user', user_name=user.name) }}" class="btn btn-success btn-sm"
                         role="button">Edit...</a>
